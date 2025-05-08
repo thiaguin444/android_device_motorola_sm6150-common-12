@@ -209,7 +209,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.vendor.qti.sys.fw.bservice_age=5000 \
     ro.vendor.qti.sys.fw.bservice_enable=true \
-    ro.vendor.qti.sys.fw.bservice_limit=8
+    ro.vendor.qti.sys.fw.bservice_limit=10
 
 # Netflix
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -232,7 +232,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.vendor.qti.sys.fw.bg_apps_limit=60
+    ro.vendor.qti.sys.fw.bg_apps_limit=18
 
 # Qualcomm System Daemon
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -288,6 +288,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.has_wide_color_display=true \
     ro.surface_flinger.has_HDR_display=true \
+    ro.surface_flinger.clear_slots_with_set_layer_buffer=true \
     ro.surface_flinger.use_color_management=true \
     ro.surface_flinger.wcg_composition_dataspace=143261696 \
     ro.surface_flinger.protected_contents=true
@@ -304,6 +305,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # Sensor
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.vendor.sensors.enable.mag_filter=true
+
+# Disable Skia tracing by default
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    debug.hwui.skia_atrace_enabled=false
 
 # Time
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -37,6 +37,51 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
 # A/B
 AB_OTA_UPDATER := true
 
+# AudioFX
+TARGET_EXCLUDES_AUDIOFX := true
+
+# Android Go
+PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
+PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
+USE_DEX2OAT_DEBUG := false
+WITH_DEXPREOPT_DEBUG_INFO := false
+
+# Do not generate libartd.
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+
+# Strip the local variable table and the local variable type table to reduce
+# the size of the system image. This has no bearing on stack traces, but will
+# leave less information available via JDWP.
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
+
+# Scudo
+PRODUCT_DISABLE_SCUDO := true
+TARGET_VNDK_USE_CORE_VARIANT := true
+
+# Dexpreopt
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    Launcher3QuickStep \
+    SystemUI \
+    Settings
+
+# Speed profile services and wifi-service to reduce RAM and storage
+PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
+
+# Updater
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.recovery_update=false
+
+# Mobile data
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.android.mobiledata=false
+
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    remove_packages
+
+# DebugFS
+PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
+
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
